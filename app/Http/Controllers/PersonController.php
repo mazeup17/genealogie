@@ -13,4 +13,12 @@ class PersonController extends Controller
         $people = Person::with('creator')->get();
         return view('people.index', compact('people'));
     }
+
+    public function show(Person $person)
+    {
+        // Chargement de la personne avec ses relations parents et enfants
+        $person->load(['parents', 'children', 'creator']);
+
+        return view('people.show', compact('person'));
+    }
 }

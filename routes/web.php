@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Route;
 
 
 Route::get('/', [PersonController::class, 'index'])->name('people.index');
+Route::get('/people/{person}', [PersonController::class, 'show'])->name('people.show');
 
 Route::get('/dashboard', function () {
     return view('dashboard');
