@@ -7,7 +7,18 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Person extends Model
 {
+    /**
+     * @var int|mixed|string|null
+     */
     protected $table = 'people';
+
+    protected $fillable = [
+        'first_name',
+        'last_name',
+        'birth_date',
+        'death_date',
+        // Ajoutez d'autres champs selon votre structure de base de données
+    ];
 
     public function creator(): BelongsTo
     {
@@ -27,3 +38,4 @@ class Person extends Model
             ->withTimestamps();
     }
 }
+

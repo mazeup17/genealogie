@@ -13,9 +13,7 @@
                         <h3 class="text-lg font-medium">Informations personnelles</h3>
                         <p><strong>Nom :</strong> {{ $person->last_name }}</p>
                         <p><strong>Prénom :</strong> {{ $person->first_name }}</p>
-                        <p><strong>Date de naissance :</strong> {{ $person->birth_date ?? 'Non renseignée' }}</p>
-                        <p><strong>Date de décès :</strong> {{ $person->death_date ?? 'Non renseignée' }}</p>
-                        <p><strong>Ajouté par :</strong> {{ $person->creator->name ?? 'Inconnu' }}</p>
+                        <p><strong>Date de naissance :</strong> {{ $person->date_of_birth ? \Carbon\Carbon::parse($person->date_of_birth)->locale('fr')->isoFormat('LL') : 'Non renseignée' }}</p>                        <p><strong>Ajouté par :</strong> {{ $person->creator->name ?? 'Inconnu' }}</p>
                     </div>
 
                     <div class="mb-6">

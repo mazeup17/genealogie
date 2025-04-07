@@ -16,9 +16,30 @@ class PersonController extends Controller
 
     public function show(Person $person)
     {
-        // Chargement de la personne avec ses relations parents et enfants
         $person->load(['parents', 'children', 'creator']);
 
         return view('people.show', compact('person'));
     }
+
+    public function create()
+    {
+        return view('people.create');
+    }
+
+    public function store(Request $request)
+    {
+        $validated = $request->validate([
+            'first_name' => 'required|string|max:255',
+            'last_name' => 'required|string|max:255',
+            'date_of_birth' => 'nullable|date',
+        ]);
+
+        $person = new Person($validated);
+        $person->created_by = Auth::id();
+        $person->save();
+
+        return redirect()->route('people.show', $person)
+            ->with('success', 'Personne créée avec succès.');
+    }
 }
+

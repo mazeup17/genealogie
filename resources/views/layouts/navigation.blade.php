@@ -25,36 +25,19 @@
             <!-- Menu utilisateur -->
             <div class="hidden md:flex md:items-center">
                 @auth
-                <div class="relative" x-data="{ open: false }">
-                    <button @click="open = !open" @click.away="open = false" class="flex items-center space-x-2 text-white bg-amber-500 hover:bg-amber-600 px-4 py-2 rounded-full text-sm font-medium transition duration-150 shadow-lg">
-                        <span>{{ Auth::user()->name }}</span>
-                        <svg class="h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
-                            <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
-                        </svg>
-                    </button>
-
-                    <div x-show="open"
-                         x-transition:enter="transition ease-out duration-100"
-                         x-transition:enter-start="transform opacity-0 scale-95"
-                         x-transition:enter-end="transform opacity-100 scale-100"
-                         x-transition:leave="transition ease-in duration-75"
-                         x-transition:leave-start="transform opacity-100 scale-100"
-                         x-transition:leave-end="transform opacity-0 scale-95"
-                         class="absolute right-0 mt-2 w-48 bg-slate-800 border border-amber-500 rounded-md shadow-lg py-1 z-50">
-
-                        <x-dropdown-link :href="route('profile.edit')" class="block px-4 py-2 text-sm text-gray-200 hover:bg-slate-700">
+                    <x-nav-link :href="route('profile.edit')" class="block px-4 py-2 text-sm text-gray-200 hover:bg-slate-700">
                             {{ __('Profile') }}
-                        </x-dropdown-link>
+                        </x-nav-link>
 
                         <!-- Déconnexion -->
                         <form method="POST" action="{{ route('logout') }}">
                             @csrf
-                            <x-dropdown-link :href="route('logout')"
+                            <x-nav-link :href="route('logout')"
                                     onclick="event.preventDefault();
                                                 this.closest('form').submit();"
                                     class="block px-4 py-2 text-sm text-gray-200 hover:bg-slate-700">
                                 {{ __('Log Out') }}
-                            </x-dropdown-link>
+                            </x-nav-link>
                         </form>
                     </div>
                 </div>
