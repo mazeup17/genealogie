@@ -25,8 +25,8 @@
             <!-- Menu utilisateur -->
             <div class="hidden md:flex md:items-center">
                 @auth
-                    <x-nav-link :href="route('profile.edit')" class="block px-4 py-2 text-sm text-gray-200 hover:bg-slate-700">
-                            {{ __('Profile') }}
+                    <x-nav-link :href="route('people.create')" class="block px-4 py-2 text-sm text-gray-200 hover:bg-slate-700">
+                            {{ __('Ajouter une personne') }}
                         </x-nav-link>
 
                         <!-- Déconnexion -->

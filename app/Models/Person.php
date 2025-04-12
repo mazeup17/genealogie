@@ -14,10 +14,11 @@ class Person extends Model
 
     protected $fillable = [
         'first_name',
-        'last_name',
-        'birth_date',
-        'death_date',
-        // Ajoutez d'autres champs selon votre structure de base de données
+        'last_name' ,
+        'middle_names' ,
+        'birth_name',
+        'date_of_birth' ,
+
     ];
 
     public function creator(): BelongsTo

@@ -19,6 +19,13 @@
                             <x-input-error :messages="$errors->get('first_name')" class="mt-2" />
                         </div>
 
+                        <!-- Seconds prénoms -->
+                        <div class="mt-4">
+                            <x-input-label for="middle_names" :value="__('Autres prénoms')" />
+                            <x-text-input id="middle_names" class="block mt-1 w-full" type="text" name="middle_names" :value="old('middle_names')" />
+                            <x-input-error :messages="$errors->get('middle_names')" class="mt-2" />
+                        </div>
+
                         <!-- Nom -->
                         <div class="mt-4">
                             <x-input-label for="last_name" :value="__('Nom')" />
@@ -26,19 +33,20 @@
                             <x-input-error :messages="$errors->get('last_name')" class="mt-2" />
                         </div>
 
-                        <!-- Date de naissance -->
+                        <!-- Nom de naissance -->
                         <div class="mt-4">
-                            <x-input-label for="birth_date" :value="__('Date de naissance')" />
-                            <x-text-input id="birth_date" class="block mt-1 w-full" type="date" name="birth_date" :value="old('birth_date')" />
-                            <x-input-error :messages="$errors->get('birth_date')" class="mt-2" />
+                            <x-input-label for="birth_name" :value="__('Nom de naissance')" />
+                            <x-text-input id="birth_name" class="block mt-1 w-full" type="text" name="birth_name" :value="old('birth_name')" />
+                            <x-input-error :messages="$errors->get('birth_name')" class="mt-2" />
                         </div>
 
-                        <!-- Date de décès -->
+                        <!-- Date de naissance -->
                         <div class="mt-4">
-                            <x-input-label for="death_date" :value="__('Date de décès')" />
-                            <x-text-input id="death_date" class="block mt-1 w-full" type="date" name="death_date" :value="old('death_date')" />
-                            <x-input-error :messages="$errors->get('death_date')" class="mt-2" />
+                            <x-input-label for="date_of_birth" :value="__('Date de naissance')" />
+                            <x-text-input id="date_of_birth" class="block mt-1 w-full" type="date" name="date_of_birth" :value="old('date_of_birth')" />
+                            <x-input-error :messages="$errors->get('date_of_birth')" class="mt-2" />
                         </div>
+
 
                         <div class="flex items-center justify-start mt-6">
                             <x-primary-button class="mr-4">

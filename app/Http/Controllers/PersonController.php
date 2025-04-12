@@ -31,15 +31,44 @@ class PersonController extends Controller
         $validated = $request->validate([
             'first_name' => 'required|string|max:255',
             'last_name' => 'required|string|max:255',
+            'middle_names' => 'nullable|string|max:255',
+            'birth_name' => 'nullable|string|max:255',
             'date_of_birth' => 'nullable|date',
         ]);
 
-        $person = new Person($validated);
-        $person->created_by = Auth::id();
-        $person->save();
+        try {
+            $formattedData = [
+                'first_name' => ucfirst(strtolower($validated['first_name'])),
+                'last_name' => strtoupper($validated['last_name']),
+                'date_of_birth' => $validated['date_of_birth'] ?: null,
+            ];
 
-        return redirect()->route('people.show', $person)
-            ->with('success', 'Personne créée avec succès.');
+            if (!empty($validated['middle_names'])) {
+                $middleNames = explode(',', $validated['middle_names']);
+                $formattedMiddleNames = [];
+                foreach ($middleNames as $name) {
+                    $formattedMiddleNames[] = ucfirst(strtolower(trim($name)));
+                }
+                $formattedData['middle_names'] = implode(', ', $formattedMiddleNames);
+            } else {
+                $formattedData['middle_names'] = null;
+            }
+
+            $formattedData['birth_name'] = !empty($validated['birth_name'])
+                ? strtoupper($validated['birth_name'])
+                : $formattedData['last_name'];
+
+            $person = new Person($formattedData);
+            $person->created_by = Auth::id();
+            $person->save();
+
+            return redirect()->route('people.index')
+                ->with('success', 'Personne créée avec succès.');
+        } catch (\Exception $e) {
+            return redirect()->back()
+                ->withInput()
+                ->with('error', 'Erreur lors de la création : ' . $e->getMessage());
+        }
     }
 }
 
