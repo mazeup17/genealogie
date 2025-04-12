@@ -45,4 +45,11 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
+
+    public function __toString(): string
+    {
+        return $this->name;
+    }
+
+
 }
